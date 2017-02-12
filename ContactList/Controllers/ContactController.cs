@@ -48,6 +48,12 @@ namespace ContactList.Controllers
             return PredefinedContacts;
         }
 
+        [HttpGet("[action]/{contactId}")]
+        public Contact Detail(int contactId)
+        {
+            return PredefinedContacts.First(s => s.ID == contactId);
+        }
+
         public class Contact
         {
             private static int AutoIDGenerator = 1;

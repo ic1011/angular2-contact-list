@@ -7,6 +7,7 @@ import { HomeComponent } from './components/home/home.component';
 import { FetchDataComponent } from './components/fetchdata/fetchdata.component';
 import { CounterComponent } from './components/counter/counter.component';
 import { ContactListComponent } from './components/contact-list/contact-list.component';
+import { ContactDetailComponent } from './components/contact-detail/contact-detail.component';
 
 @NgModule({
     bootstrap: [ AppComponent ],
@@ -16,6 +17,7 @@ import { ContactListComponent } from './components/contact-list/contact-list.com
         CounterComponent,
         FetchDataComponent,
         ContactListComponent,
+        ContactDetailComponent,
         HomeComponent
     ],
     imports: [
@@ -26,6 +28,7 @@ import { ContactListComponent } from './components/contact-list/contact-list.com
             { path: 'counter', component: CounterComponent },
             { path: 'fetch-data', component: FetchDataComponent },
             { path: 'contact-list', component: ContactListComponent },
+            { path: 'contact-detail/:id', component: ContactDetailComponent },
             { path: '**', redirectTo: 'home' }
         ])
     ]

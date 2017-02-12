@@ -1,0 +1,12 @@
+<h1>Contact detail</h1>
+
+<p *ngIf="!contact"><em>Loading...</em></p>
+
+<ul *ngIf="contact">
+    <li>{{contact.id}}</li>
+    <li>{{contact.firstName}}</li>
+    <li>{{contact.lastName}}</li>
+    <li>{{contact.address}}</li>
+    <li>{{contact.email}}</li>
+    <li>{{contact.phone}}</li>
+</ul>
