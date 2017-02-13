@@ -131,6 +131,8 @@ export class ContactEditComponent implements OnInit {
 
                 if (json.status != 'success') {
                     console.log('Error: ' + json.message);
+                } else {
+                    history.back();
                 }
             });
     }
