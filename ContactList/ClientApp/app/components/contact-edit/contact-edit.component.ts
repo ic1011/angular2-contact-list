@@ -19,6 +19,7 @@ export class ContactEditComponent implements OnInit {
     private fb: FormBuilder;
     private contactForm: FormGroup;
     private contact: Contact;
+    private submitting: boolean;
 
     private formErrors = {
         'firstName': '',
@@ -54,6 +55,7 @@ export class ContactEditComponent implements OnInit {
         this.route = route;
         this.utils = utils;
         this.fb = fb;
+        this.submitting = false;
     }
 
     ngOnInit() {
@@ -112,6 +114,8 @@ export class ContactEditComponent implements OnInit {
     }
 
     onSubmit() {
+        this.submitting = true;
+
         let contactId = this.contact.id;
         this.contact = this.contactForm.value;
         this.contact.id = contactId;
@@ -121,6 +125,8 @@ export class ContactEditComponent implements OnInit {
 
         this.http.put('/api/Contact/Edit', JSON.stringify(this.contact), options)
             .subscribe(r => {
+                this.submitting = false;
+
                 let json = r.json();
 
                 if (json.status != 'success') {
