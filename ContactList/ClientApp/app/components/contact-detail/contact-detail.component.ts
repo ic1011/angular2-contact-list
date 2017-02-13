@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Http } from '@angular/http';
 import { ActivatedRoute, Params } from '@angular/router';
 import 'rxjs/add/operator/switchMap';
+import { Contact, Utils } from '../../models/contact';
 
 @Component({
     selector: 'contact-detail',
@@ -10,26 +11,18 @@ import 'rxjs/add/operator/switchMap';
 export class ContactDetailComponent implements OnInit {
     private http: Http;
     private route: ActivatedRoute;
-    public contact: Contact;
+    private utils: Utils;
+    private contact: Contact;
 
-    constructor(http: Http, route: ActivatedRoute) {
+    constructor(http: Http, route: ActivatedRoute, utils: Utils) {
         this.http = http;
         this.route = route;
+        this.utils = utils;
     }
 
     ngOnInit() {
-
         this.route.params
             .switchMap((params: Params) => this.http.get('/api/Contact/Detail/' + params['id']))
-            .subscribe(result => { this.contact = result.json() });
+            .subscribe(result => { this.contact = result.json(); console.log(this.contact);});
     }
-}
-
-interface Contact {
-    id: number;
-    firstName: string;
-    lastName: string;
-    email: string;
-    phone: string;
-    address: string;
 }

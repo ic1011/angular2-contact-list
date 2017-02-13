@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 
 // For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -11,7 +12,7 @@ namespace ContactList.Controllers
     [Route("api/[controller]")]
     public class ContactController : Controller
     {
-        private static Contact[] PredefinedContacts = new Contact[]
+        private static List<Contact> PredefinedContacts = new List<Contact>
         {
             new Contact()
             {
@@ -52,6 +53,23 @@ namespace ContactList.Controllers
         public Contact Detail(int contactId)
         {
             return PredefinedContacts.First(s => s.ID == contactId);
+        }
+
+        [HttpPut("[action]")]
+        public JsonResult Edit([FromBody]Contact contact)
+        {
+            try
+            {
+                var itemIndex = PredefinedContacts.FindIndex(c => c.ID == contact.ID);
+
+                PredefinedContacts[itemIndex] = contact;
+            }
+            catch (Exception e)
+            {
+                return new JsonResult(new { status = "error", message = e.Message });
+            }
+
+            return new JsonResult(new { status = "success" });
         }
 
         public class Contact

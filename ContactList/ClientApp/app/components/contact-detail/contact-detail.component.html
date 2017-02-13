@@ -3,10 +3,11 @@
 <p *ngIf="!contact"><em>Loading...</em></p>
 
 <ul *ngIf="contact">
-    <li>{{contact.id}}</li>
-    <li>{{contact.firstName}}</li>
-    <li>{{contact.lastName}}</li>
-    <li>{{contact.address}}</li>
-    <li>{{contact.email}}</li>
-    <li>{{contact.phone}}</li>
+    <li><span>ID: </span>{{contact.id}}</li>
+    <li><span>First Name: </span>{{contact.firstName}}</li>
+    <li><span>Last Name: </span>{{contact.lastName}}</li>
+    <li><span>Address: </span>{{contact.address}}</li>
+    <li><span>Email: </span>{{contact.email}}</li>
+    <li><span>Phone: </span>{{contact.phone}}</li>
+    <li><span>Gender: </span>{{utils.getGenderAsName(contact.gender)}}</li>
 </ul>

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Http } from '@angular/http';
-import { Router} from '@angular/router';
+import { Router } from '@angular/router';
+import { Contact } from '../../models/contact';
 
 @Component({
     selector: 'contact-list',
@@ -8,7 +9,7 @@ import { Router} from '@angular/router';
 })
 export class ContactListComponent {
     private router: Router;
-    public contacts: Contact[];
+    private contacts: Contact[];
 
     constructor(http: Http, router: Router) {
         this.router = router;
@@ -22,13 +23,8 @@ export class ContactListComponent {
         this.router.navigate(['/contact-detail', contactId]);
         console.log(contactId);
     }
-}
 
-interface Contact {
-    id: number;
-    firstName: string;
-    lastName: string;
-    email: string;
-    phone: string;
-    address: string;
+    public loadEditPage(contactId: number) {
+        this.router.navigate(['/contact-edit', contactId]);
+    }
 }
