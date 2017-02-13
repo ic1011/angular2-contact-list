@@ -15,6 +15,7 @@
             <td>{{ contact.id }}</td>
             <td>{{ contact.firstName }}</td>
             <td>{{ contact.lastName }}</td>
+            <td><button (click)="deleteContact(contact.id)">Delete</button></td>
             <td><button (click)="loadEditPage(contact.id)">Edit</button></td>
             <td><button (click)="loadDetailPage(contact.id)">Detail</button></td>
         </tr>

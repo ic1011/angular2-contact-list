@@ -60,7 +60,7 @@ namespace ContactList.Controllers
         {
             try
             {
-                var itemIndex = PredefinedContacts.FindIndex(c => c.ID == contact.ID);
+                var itemIndex = this.findContactIndexByContact(contact);
 
                 PredefinedContacts[itemIndex] = contact;
             }
@@ -70,6 +70,33 @@ namespace ContactList.Controllers
             }
 
             return new JsonResult(new { status = "success" });
+        }
+
+        [HttpDelete("[action]/{contactId}")]
+        public JsonResult Delete(int contactId)
+        {
+            try
+            {
+                var itemIndex = this.findContactIndexByContact(contactId);
+
+                PredefinedContacts.RemoveAt(itemIndex);
+            }
+            catch (Exception e)
+            {
+                return new JsonResult(new { status = "error", message = e.Message });
+            }
+
+            return new JsonResult(new { status = "success" });
+        }
+
+        private int findContactIndexByContact(Contact contact)
+        {
+            return PredefinedContacts.FindIndex(c => c.ID == contact.ID);
+        }
+
+        private int findContactIndexByContact(int contactId)
+        {
+            return PredefinedContacts.FindIndex(c => c.ID == contactId);
         }
 
         public class Contact
