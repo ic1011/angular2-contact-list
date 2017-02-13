@@ -9,6 +9,7 @@ import { CounterComponent } from './components/counter/counter.component';
 import { ContactListComponent } from './components/contact-list/contact-list.component';
 import { ContactDetailComponent } from './components/contact-detail/contact-detail.component';
 import { ContactEditComponent } from './components/contact-edit/contact-edit.component';
+import { ContactAddComponent } from './components/contact-add/contact-add.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { Utils } from './models/contact';
 
@@ -22,6 +23,7 @@ import { Utils } from './models/contact';
         ContactListComponent,
         ContactDetailComponent,
         ContactEditComponent,
+        ContactAddComponent,
         HomeComponent
     ],
     providers: [Utils],
@@ -36,6 +38,7 @@ import { Utils } from './models/contact';
             { path: 'contact-list', component: ContactListComponent },
             { path: 'contact-detail/:id', component: ContactDetailComponent },
             { path: 'contact-edit/:id', component: ContactEditComponent },
+            { path: 'contact-add', component: ContactAddComponent },
             { path: '**', redirectTo: 'home' }
         ])
     ]

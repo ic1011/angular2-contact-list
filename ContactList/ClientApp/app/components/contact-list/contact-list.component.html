@@ -2,6 +2,10 @@
 
 <p *ngIf="!contacts"><em>Loading...</em></p>
 
+<a [routerLink]="['/contact-add']">
+    <span class='glyphicon glyphicon-plus'></span> Add new contact
+</a>
+
 <table class='table' *ngIf="contacts">
     <thead>
         <tr>

@@ -7,10 +7,10 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Observable } from 'rxjs/Observable';
 
 @Component({
-    selector: 'contact-edit',
-    template: require('./contact-edit.component.html')
+    selector: 'contact-add',
+    template: require('./contact-add.component.html')
 })
-export class ContactEditComponent implements OnInit {
+export class ContactAddComponent implements OnInit {
     private http: Http;
     private route: ActivatedRoute;
     private utils: Utils;
@@ -57,12 +57,8 @@ export class ContactEditComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.route.params
-            .switchMap((params: Params) => this.http.get('/api/Contact/Detail/' + params['id']))
-            .subscribe(result => {
-                this.contact = result.json();
-                this.buildForm();
-            });
+        this.contact = new Contact();
+        this.buildForm();
     }
 
     buildForm() {
@@ -113,15 +109,13 @@ export class ContactEditComponent implements OnInit {
 
     onSubmit() {
         this.submitting = true;
-
-        let contactId = this.contact.id;
+        
         this.contact = this.contactForm.value;
-        this.contact.id = contactId;
 
         let headers = new Headers({ 'Content-Type': 'application/json' });
         let options = new RequestOptions({ headers: headers });
 
-        this.http.put('/api/Contact/Edit', JSON.stringify(this.contact), options)
+        this.http.post('/api/Contact/Add', JSON.stringify(this.contact), options)
             .subscribe(r => {
                 this.submitting = false;
 

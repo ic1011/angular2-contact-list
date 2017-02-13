@@ -1,6 +1,10 @@
-<h1>Contact edit</h1>
+<h1>Contact add</h1>
 
 <p *ngIf="!contact"><em>Loading...</em></p>
+
+<a class="add-new" [routerLink]="['/contact-list']">
+    <span class='glyphicon glyphicon-circle-arrow-left'></span> Go back to Contact's list
+</a>
 
 <form [formGroup]="contactForm" *ngIf="contact" (ngSubmit)="onSubmit()">
     <div class="form-group">
@@ -33,7 +37,7 @@
     </div>
     <div class="form-group">
         <label for="address">Address: </label>
-        <input class="form-control" type="text" id="address" formControlName="address" required>
+        <input class="form-control" type="text" id="address" formControlName="address">
     </div>
     <div class="form-group">
         <label for="gender">Gender: </label>

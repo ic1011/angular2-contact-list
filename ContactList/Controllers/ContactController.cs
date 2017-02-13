@@ -72,6 +72,21 @@ namespace ContactList.Controllers
             return new JsonResult(new { status = "success" });
         }
 
+        [HttpPost("[action]")]
+        public JsonResult Add([FromBody]Contact contact)
+        {
+            try
+            {
+                PredefinedContacts.Add(contact);
+            }
+            catch (Exception e)
+            {
+                return new JsonResult(new { status = "error", message = e.Message });
+            }
+
+            return new JsonResult(new { status = "success" });
+        }
+
         [HttpDelete("[action]/{contactId}")]
         public JsonResult Delete(int contactId)
         {
